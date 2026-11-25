@@ -1,0 +1,10 @@
+<h1>Bienvenue à TrouveTonCiné !</h1>
+
+<ul>
+@for (cine of cinemas; track $index){
+  <li>{{ cine }}</li>
+}
+</ul>
+
+<input type="text" [(ngModel)]="cinema">
+<button (click)="addCinema()">Ajouter</button>
