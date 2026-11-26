@@ -34,6 +34,10 @@ export class CineService {
     return this.cinemas;
   }
 
+  public getCinema() : Cinema {
+    return this.cinemas[0];
+  }
+
 
   public addCinema(cinema : Cinema){
     this.cinemas.push(cinema)
