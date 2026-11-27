@@ -1,46 +1,34 @@
-import { Injectable } from '@angular/core';
+import {Injectable, signal} from '@angular/core';
 import {Cinema} from '../models/cinema';
+import {CineApi} from './cine-api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CineService {
 
-  private cinemas : Cinema[];
+  private readonly _cinemas  = signal<Cinema[] | null>(null);
+  public readonly cinemas = this._cinemas.asReadonly()
 
 
-  constructor() {
+  constructor(private cineApi : CineApi) {
     // this.cinemas = [];
-    this.cinemas = [
-      {
-        name: "L'espérance",
-        city: "Rennes",
-        openYear: 1985
-      },
-      {
-        name: "L'arvor",
-        city: "Rennes",
-        openYear: 1992
-      },
-      {
-        name: "Gaumont-Pathé",
-        city: "Nantes",
-        openYear: 2001
-      }
-    ];
+
   }
 
   public getAllCinemas(){
-    return this.cinemas;
+    this.cineApi.findAllCinemas().subscribe(
+      data => this._cinemas.set(data)
+    )
   }
 
   public getCinema() : Cinema {
-    return this.cinemas[0];
+    return {name : "Test", openYear : 2100, city : "Test12"};
   }
 
 
   public addCinema(cinema : Cinema){
-    this.cinemas.push(cinema)
+    //this.cinemas.push(cinema)
   }
 
 }

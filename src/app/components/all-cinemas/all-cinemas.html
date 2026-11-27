@@ -1,7 +1,9 @@
 <h1>Bienvenue à TrouveTonCiné !</h1>
 
+<button (click)="loadCinemas()">Charger les cinémas</button>
+
 <ul>
-  @for (cine of cinemas; track $index) {
+  @for (cine of cinemas(); track $index) {
     <li>{{ cine.name }} / {{ cine.city }}</li>
   }
 </ul>
@@ -31,4 +33,9 @@
   <br>
   <button type="submit">Ajouter cinéma</button>
 </form>
+
+
+
+
+<app-cinema-detail></app-cinema-detail>
 

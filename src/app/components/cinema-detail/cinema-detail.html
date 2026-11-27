@@ -1,3 +1,10 @@
 <h2>Cinema : {{ cinema.name }}</h2>
 <p>Ville : {{ cinema.city }}</p>
 <p>Année d'ouverture : {{ cinema.openYear }}</p>
+
+
+<ul>
+  @for (cine of cinemas(); track $index) {
+    <li>{{ cine.name }} / {{ cine.city }}</li>
+  }
+</ul>
